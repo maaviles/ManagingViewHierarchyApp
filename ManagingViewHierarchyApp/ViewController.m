@@ -19,6 +19,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
   
+  self.bubbles = [[NSMutableArray alloc] init];
+  
   UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc]
                                            initWithTarget:self action:@selector(addBubbleWhereTapped:)];
   tapRecognizer.numberOfTapsRequired = 1;
@@ -74,12 +76,10 @@
   }
   
   for (id behaviour in _animator.behaviors) {
-    NSLog(@"There is this behaviour: %@", [behaviour description]);
+//    NSLog(@"There is this behaviour: %@", [behaviour description]);
   }
   [self getBehaviourItemsCount];
 }
-
-
 
 - (void)didReceiveMemoryWarning
 {
@@ -101,23 +101,19 @@
       
       // right side up
       case 1:
-      _gravity.gravityDirection = CGVectorMake(0, 1);
-      [_animator addBehavior:_gravity];
+        [self changeAllTheGravities:CGVectorMake(0, 1)];
         break;
       // upside down
       case 2:
-      _gravity.gravityDirection = CGVectorMake(0, -1);
-      [_animator addBehavior:_gravity];
+        [self changeAllTheGravities:CGVectorMake(0, -1)];
         break;
       // on left side
       case 3:
-      _gravity.gravityDirection = CGVectorMake(-1, 0);
-      [_animator addBehavior:_gravity];
+        [self changeAllTheGravities:CGVectorMake(-1, 0)];
         break;
       // on right side
       case 4:
-      _gravity.gravityDirection = CGVectorMake(1, 0);
-      [_animator addBehavior:_gravity];
+        [self changeAllTheGravities:CGVectorMake(1, 0)];
         break;
       default:
         break;
@@ -126,25 +122,23 @@
 }
 
 - (IBAction)upButtonTapped:(id)sender {
-  _gravity.gravityDirection = CGVectorMake(0, -1);
-  [_animator addBehavior:_gravity];
+  [self changeAllTheGravities:CGVectorMake(0, -1)];
 //  NSLog(@"number of behaviours: %lu", (unsigned long)[_animator.behaviors count]);
 }
 
 - (IBAction)downButtonTapped:(id)sender {
-  _gravity.gravityDirection = CGVectorMake(0, 1);
-  [_animator addBehavior:_gravity];
+  [self changeAllTheGravities:CGVectorMake(0, 1)];
 }
 
 - (IBAction)leftButtonTapped:(id)sender {
-  _gravity.gravityDirection = CGVectorMake(-1, 0);
-  [_animator addBehavior:_gravity];
+  [self changeAllTheGravities:CGVectorMake(-1, 0)];
 }
 
 - (IBAction)rightButtonTapped:(id)sender {
-  _gravity.gravityDirection = CGVectorMake(1, 0);
-  [_animator addBehavior:_gravity];
+  [self changeAllTheGravities:CGVectorMake(1, 0)];
 }
+
+#pragma mark - bubble REST (sort of) methods
 
 -(void)addBubbleWhereTapped:(UITapGestureRecognizer *)sender {
   CGPoint tapPoint = [sender locationInView:self.view];
@@ -176,9 +170,24 @@
 
 -(void)getBehaviourItemsCount {
   self.gravityItemsCountLabel.text =
-    [NSString stringWithFormat:@"Gravity items: %i", _gravity.items.count];
+    [NSString stringWithFormat:@"Gravity items: %lu", (unsigned long)_gravity.items.count];
   self.collisionItemsCountLabel.text =
-    [NSString stringWithFormat:@"Collision items: %i", _collision.items.count];
+    [NSString stringWithFormat:@"Collision items: %lu", (unsigned long)_collision.items.count];
+}
+
+-(void)changeAllTheGravities:(CGVector)gravityVector {
+  // possibly a criminally inefficient way of resetting the gravity
+  // for all the bubbles inside the bubbles, haha...
+  
+  _gravity.gravityDirection = gravityVector;
+  
+  for (BubbleView *bubble in self.bubbles) {
+    [bubble changeGravity:gravityVector];
+//    NSLog(@"changeGravity method being called from view controller.");
+  }
+//  NSLog(@"changeAllTheGravities method being called.");
+//  NSLog(@"self.bubbles count: %lu", (unsigned long) [self.bubbles count]);
+  [_animator addBehavior:_gravity];
 }
 
 @end
