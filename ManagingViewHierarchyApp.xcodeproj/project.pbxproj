@@ -21,6 +21,7 @@
 		3FC47FA418261036003B74E2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FC47F8618261036003B74E2 /* UIKit.framework */; };
 		3FC47FAC18261036003B74E2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3FC47FAA18261036003B74E2 /* InfoPlist.strings */; };
 		3FC47FAE18261036003B74E2 /* ManagingViewHierarchyAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FC47FAD18261036003B74E2 /* ManagingViewHierarchyAppTests.m */; };
+		3FDF3FCE18267307000D6048 /* BubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FDF3FCD18267307000D6048 /* BubbleView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		3FC47FA918261036003B74E2 /* ManagingViewHierarchyAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ManagingViewHierarchyAppTests-Info.plist"; sourceTree = "<group>"; };
 		3FC47FAB18261036003B74E2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3FC47FAD18261036003B74E2 /* ManagingViewHierarchyAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ManagingViewHierarchyAppTests.m; sourceTree = "<group>"; };
+		3FDF3FCC18267307000D6048 /* BubbleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BubbleView.h; sourceTree = "<group>"; };
+		3FDF3FCD18267307000D6048 /* BubbleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BubbleView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +120,8 @@
 				3FC47F9418261036003B74E2 /* Main.storyboard */,
 				3FC47F9718261036003B74E2 /* ViewController.h */,
 				3FC47F9818261036003B74E2 /* ViewController.m */,
+				3FDF3FCC18267307000D6048 /* BubbleView.h */,
+				3FDF3FCD18267307000D6048 /* BubbleView.m */,
 				3FC47F9A18261036003B74E2 /* Images.xcassets */,
 				3FC47F8918261036003B74E2 /* Supporting Files */,
 			);
@@ -251,6 +256,7 @@
 			files = (
 				3FC47F9918261036003B74E2 /* ViewController.m in Sources */,
 				3FC47F9318261036003B74E2 /* AppDelegate.m in Sources */,
+				3FDF3FCE18267307000D6048 /* BubbleView.m in Sources */,
 				3FC47F8F18261036003B74E2 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -460,6 +466,7 @@
 				3FC47FB318261036003B74E2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3FC47FB418261036003B74E2 /* Build configuration list for PBXNativeTarget "ManagingViewHierarchyAppTests" */ = {
 			isa = XCConfigurationList;
@@ -468,6 +475,7 @@
 				3FC47FB618261036003B74E2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
