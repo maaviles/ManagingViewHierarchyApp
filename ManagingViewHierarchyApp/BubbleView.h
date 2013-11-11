@@ -12,13 +12,13 @@
 
 @interface BubbleView : UIView
 
-@property (strong, nonatomic) UIDynamicAnimator *animator;
-@property (strong, nonatomic) UIGravityBehavior *gravity;
-@property (strong, nonatomic) UICollisionBehavior *collision;
-@property CGVector gravityVector;
+//@property (strong, nonatomic) UIDynamicAnimator *animator;
+//@property (strong, nonatomic) UIGravityBehavior *gravity;
+//@property (strong, nonatomic) UICollisionBehavior *collision;
+//@property CGVector gravityVector;
 @property (weak, nonatomic) id<BubbleViewDelegate> delegate;
 
--(void)changeGravity:(CGVector)gravityVector;
+//-(void)changeGravity:(CGVector)gravityVector;
 
 @end
 

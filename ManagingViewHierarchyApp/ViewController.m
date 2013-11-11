@@ -181,10 +181,10 @@
   
   _gravity.gravityDirection = gravityVector;
   
-  for (BubbleView *bubble in self.bubbles) {
-    [bubble changeGravity:gravityVector];
+//  for (BubbleView *bubble in self.bubbles) {
+//    [bubble changeGravity:gravityVector];
 //    NSLog(@"changeGravity method being called from view controller.");
-  }
+//  }
 //  NSLog(@"changeAllTheGravities method being called.");
 //  NSLog(@"self.bubbles count: %lu", (unsigned long) [self.bubbles count]);
   [_animator addBehavior:_gravity];
