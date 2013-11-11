@@ -44,12 +44,57 @@
 //    [_collision addBoundaryWithIdentifier:@"boundary" forPath:[UIBezierPath bezierPathWithRoundedRect:self.frame cornerRadius:25.0]];
 //    [_animator addBehavior:_collision];
     
-    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc]
-                                             initWithTarget:self action:@selector(respondToTapGesture)];
-    tapRecognizer.numberOfTapsRequired = 1;
-    [self addGestureRecognizer:tapRecognizer];
+//    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc]
+//                                             initWithTarget:self action:@selector(respondToTapGesture)];
+//    tapRecognizer.numberOfTapsRequired = 1;
+//    [self addGestureRecognizer:tapRecognizer];
   }
   return self;
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+//	NSLog(@"touchesBegan method called");
+  UITouch *touch = [touches anyObject];
+  if ([touch view] == self) {
+    CGPoint touchPoint = [touch locationInView:self.superview];
+    CGFloat originalX = self.center.x;
+    CGFloat originalY = self.center.y;
+    NSLog(@"touchesBegan: original: %f, %f", originalX, originalY);
+    CGFloat changedX = touchPoint.x;
+    CGFloat changedY = touchPoint.y;
+    NSLog(@"touchesBegan: changed: %f, %f", changedX, changedY);
+    self.center = CGPointMake(changedX, changedY);
+    [self.delegate removeBubbleFromBehaviours:self];
+    return;
+  }
+}
+
+-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+//  NSLog(@"touchesMoved method called");
+	UITouch *touch = [touches anyObject];
+	if ([touch view] == self) {
+    CGPoint touchPoint = [touch locationInView:self.superview];
+    CGFloat originalX = self.center.x;
+    CGFloat originalY = self.center.y;
+    NSLog(@"touchesMoved: original: %f, %f", originalX, originalY);
+    CGFloat changedX = touchPoint.x;
+    CGFloat changedY = touchPoint.y;
+    NSLog(@"touchesMoved: changed: %f, %f", changedX, changedY);
+    self.center = CGPointMake(changedX, changedY);
+    return;
+	}
+}
+
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+  NSLog(@"touchesEnded method called");
+	
+	UITouch *touch = [touches anyObject];
+	if ([touch view] == self) {
+    [self.delegate addBubbleToBehaviours:self];
+    [self.delegate refreshAnimation];
+		return;
+	}		
 }
 
 /*
@@ -61,7 +106,7 @@
  }
  */
 
--(void)respondToTapGesture {
+//-(void)respondToTapGesture {
     //  NSLog(@"%@ was tapped.", [self description]);
 //  [UIView animateWithDuration:0.5
 //                        delay:0.0
@@ -74,7 +119,7 @@
 //                     [self removeFromSuperview];
 //                   }];
 //  [self.delegate removeBubbleFromBehaviours:self];
-}
+//}
 
 //-(void)changeGravity:(CGVector)gravityVector {
 //  _gravity.gravityDirection = gravityVector;

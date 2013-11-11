@@ -159,6 +159,15 @@
   }
 }
 
+-(void)addBubbleToBehaviours:(BubbleView *)bubble {
+  [self.bubbles addObject:bubble];
+  [_gravity addItem:bubble];
+  [_collision addItem:bubble];
+  [_animator addBehavior:_gravity];
+  [_animator addBehavior:_collision];
+  [self getBehaviourItemsCount];
+}
+
 -(void)removeBubbleFromBehaviours:(BubbleView *)bubble {
   [self.bubbles removeObject:bubble];
   [_gravity removeItem:bubble];
@@ -188,6 +197,11 @@
 //  NSLog(@"changeAllTheGravities method being called.");
 //  NSLog(@"self.bubbles count: %lu", (unsigned long) [self.bubbles count]);
   [_animator addBehavior:_gravity];
+}
+
+-(void)refreshAnimation {
+  [_animator addBehavior:_gravity];
+  [_animator addBehavior:_collision];
 }
 
 @end

@@ -25,6 +25,9 @@
 @protocol BubbleViewDelegate <NSObject>
 
 @required
+-(void)addBubbleToBehaviours:(BubbleView *)bubble;
 -(void)removeBubbleFromBehaviours:(BubbleView *)bubble;
+  // does animation need to be refreshed?
+-(void)refreshAnimation;
 
 @end
