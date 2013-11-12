@@ -24,6 +24,12 @@
     self.backgroundColor = [UIColor greenColor];
     self.layer.cornerRadius = 25.0;
     self.clipsToBounds = YES;
+      
+      // poppity pop
+      UITapGestureRecognizer *tapRecognizer1 = [[UITapGestureRecognizer alloc]
+                                                initWithTarget:self action:@selector(popTap:)];
+      tapRecognizer1.numberOfTapsRequired = 1;
+      [self addGestureRecognizer:tapRecognizer1];
     
 //    NSMutableArray *tempSubbles = [[NSMutableArray alloc] init];
     
@@ -81,5 +87,19 @@
 //  [_animator addBehavior:_gravity];
 //    //  NSLog(@"changeGravity method in bubble is being called.");
 //}
+
+- (void)popTap:(UITapGestureRecognizer *)sender
+{
+    if (sender.state == UIGestureRecognizerStateEnded)
+    {
+        CABasicAnimation* boundsAnim = [CABasicAnimation animationWithKeyPath:@"bounds"];
+        boundsAnim.fromValue = [NSValue valueWithCGRect:self.layer.bounds];
+        boundsAnim.toValue = [NSValue valueWithCGRect:CGRectMake(10, 10, 30, 30)];
+        boundsAnim.duration = 0.2;
+        [self.layer addAnimation:boundsAnim forKey:@"bounds"];
+        
+        self.layer.bounds = CGRectMake(10, 10, 0, 0);
+    }
+}
 
 @end
